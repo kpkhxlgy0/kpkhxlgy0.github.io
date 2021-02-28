@@ -5,29 +5,29 @@ mode: Rule
 log-level: info
 external-controller: ':9090'
 proxies:
-    - { name: 香港丨专线丨LeaseWeb丨实验丨SS, type: ss, server: iplc.jijifun.com, port: '20000', cipher: chacha20-ietf, password: '114514', plugin: obfs, plugin-opts: { mode: http, host: 5b802a4825.microsoft.com }, udp: false }
-    - { name: 香港丨专线丨NTT丨SS, type: ss, server: iplc.jijifun.com, port: '20001', cipher: chacha20-ietf, password: '114514', plugin: obfs, plugin-opts: { mode: http, host: 5b802a4825.microsoft.com }, udp: false }
-    - { name: 香港丨专线丨HKBN丨SS, type: ss, server: iplc.jijifun.com, port: '20002', cipher: chacha20-ietf, password: '114514', plugin: obfs, plugin-opts: { mode: http, host: 5b802a4825.microsoft.com }, udp: false }
-    - { name: 台湾丨专线丨HKBN丨SS, type: ss, server: iplc.jijifun.com, port: '20007', cipher: chacha20-ietf, password: '114514', plugin: obfs, plugin-opts: { mode: http, host: 5b802a4825.microsoft.com }, udp: false }
-    - { name: 新加坡丨专线丨NTT丨SS, type: ss, server: iplc.jijifun.com, port: '20003', cipher: chacha20-ietf, password: '114514', plugin: obfs, plugin-opts: { mode: http, host: 5b802a4825.microsoft.com }, udp: false }
-    - { name: 日本丨专线丨NTT丨SS, type: ss, server: iplc.jijifun.com, port: '20006', cipher: chacha20-ietf, password: '114514', plugin: obfs, plugin-opts: { mode: http, host: 5b802a4825.microsoft.com }, udp: false }
-    - { name: 美国丨专线丨SEA丨SS, type: ss, server: iplc.jijifun.com, port: '20005', cipher: chacha20-ietf, password: '114514', plugin: obfs, plugin-opts: { mode: http, host: 5b802a4825.microsoft.com }, udp: false }
+    - { name: vmess节点升级维护中丨请使用ss/ssr节点, type: vmess, server: 6422cdda20941d4491747631e816649b.jijifun.com, port: '30001', uuid: 41E237CF-6377-0586-4B02-6C2C91A9C8DB, alterId: 0, cipher: auto, udp: false }
+    - { name: 香港丨专线丨LeaseWeb丨1x, type: vmess, server: 6422cdda20941d4491747631e816649b.jijifun.com, port: '30001', uuid: 41E237CF-6377-0586-4B02-6C2C91A9C8DB, alterId: 0, cipher: auto, udp: false }
+    - { name: 台湾丨专线丨Hinet丨1x, type: vmess, server: 6422cdda20941d4491747631e816649b.jijifun.com, port: '30004', uuid: 41E237CF-6377-0586-4B02-6C2C91A9C8DB, alterId: 0, cipher: auto, udp: false }
+    - { name: 香港丨专线丨LeaseWeb丨SS, type: ss, server: 6422cdda20941d4491747631e816649b.jijifun.com, port: '20000', cipher: chacha20-ietf, password: '114514', plugin: obfs, plugin-opts: { mode: http, host: 5b802a4825.microsoft.com }, udp: false }
+    - { name: 香港丨专线丨NTT丨SS, type: ss, server: 6422cdda20941d4491747631e816649b.jijifun.com, port: '20001', cipher: chacha20-ietf, password: '114514', plugin: obfs, plugin-opts: { mode: http, host: 5b802a4825.microsoft.com }, udp: false }
+    - { name: 香港丨专线丨HKBN丨SS, type: ss, server: 6422cdda20941d4491747631e816649b.jijifun.com, port: '20002', cipher: chacha20-ietf, password: '114514', plugin: obfs, plugin-opts: { mode: http, host: 5b802a4825.microsoft.com }, udp: false }
+    - { name: 台湾丨专线丨HKBN丨SS, type: ss, server: 6422cdda20941d4491747631e816649b.jijifun.com, port: '20007', cipher: chacha20-ietf, password: '114514', plugin: obfs, plugin-opts: { mode: http, host: 5b802a4825.microsoft.com }, udp: false }
+    - { name: 新加坡丨专线丨NTT丨SS, type: ss, server: 6422cdda20941d4491747631e816649b.jijifun.com, port: '20003', cipher: chacha20-ietf, password: '114514', plugin: obfs, plugin-opts: { mode: http, host: 5b802a4825.microsoft.com }, udp: false }
+    - { name: 日本丨专线丨NTT丨SS, type: ss, server: 6422cdda20941d4491747631e816649b.jijifun.com, port: '20006', cipher: chacha20-ietf, password: '114514', plugin: obfs, plugin-opts: { mode: http, host: 5b802a4825.microsoft.com }, udp: false }
+    - { name: 美国丨专线丨SEA丨SS, type: ss, server: 6422cdda20941d4491747631e816649b.jijifun.com, port: '20005', cipher: chacha20-ietf, password: '114514', plugin: obfs, plugin-opts: { mode: http, host: 5b802a4825.microsoft.com }, udp: false }
 proxy-groups:
-    - { name: '🚀 节点选择', type: select, proxies: ['♻️ 自动选择', DIRECT, 香港丨专线丨LeaseWeb丨实验丨SS, 香港丨专线丨NTT丨SS, 香港丨专线丨HKBN丨SS, 台湾丨专线丨HKBN丨SS, 新加坡丨专线丨NTT丨SS, 日本丨专线丨NTT丨SS, 美国丨专线丨SEA丨SS] }
-    - { name: '♻️ 自动选择', type: url-test, url: 'http://www.gstatic.com/generate_204', interval: 300, tolerance: 50, proxies: [香港丨专线丨LeaseWeb丨实验丨SS, 香港丨专线丨NTT丨SS, 香港丨专线丨HKBN丨SS, 台湾丨专线丨HKBN丨SS, 新加坡丨专线丨NTT丨SS, 日本丨专线丨NTT丨SS, 美国丨专线丨SEA丨SS] }
-    - { name: '🌍 国外媒体', type: select, proxies: ['🚀 节点选择', '♻️ 自动选择', '🎯 全球直连', 香港丨专线丨LeaseWeb丨实验丨SS, 香港丨专线丨NTT丨SS, 香港丨专线丨HKBN丨SS, 台湾丨专线丨HKBN丨SS, 新加坡丨专线丨NTT丨SS, 日本丨专线丨NTT丨SS, 美国丨专线丨SEA丨SS] }
-    - { name: 'NETFLIX', type: select, proxies: ['🚀 节点选择', '♻️ 自动选择', '🎯 全球直连', 香港丨专线丨LeaseWeb丨实验丨SS, 香港丨专线丨NTT丨SS, 香港丨专线丨HKBN丨SS, 台湾丨专线丨HKBN丨SS, 新加坡丨专线丨NTT丨SS, 日本丨专线丨NTT丨SS, 美国丨专线丨SEA丨SS] }
-    - { name: 'SPOTIFY', type: select, proxies: ['🚀 节点选择', '♻️ 自动选择', '🎯 全球直连', 香港丨专线丨LeaseWeb丨实验丨SS, 香港丨专线丨NTT丨SS, 香港丨专线丨HKBN丨SS, 台湾丨专线丨HKBN丨SS, 新加坡丨专线丨NTT丨SS, 日本丨专线丨NTT丨SS, 美国丨专线丨SEA丨SS] }
-    - { name: 'YOUTUBE', type: select, proxies: ['🚀 节点选择', '♻️ 自动选择', '🎯 全球直连', 香港丨专线丨LeaseWeb丨实验丨SS, 香港丨专线丨NTT丨SS, 香港丨专线丨HKBN丨SS, 台湾丨专线丨HKBN丨SS, 新加坡丨专线丨NTT丨SS, 日本丨专线丨NTT丨SS, 美国丨专线丨SEA丨SS] }
-    - { name: '📢 谷歌FCM', type: select, proxies: ['🚀 节点选择', '🎯 全球直连', '♻️ 自动选择', 香港丨专线丨LeaseWeb丨实验丨SS, 香港丨专线丨NTT丨SS, 香港丨专线丨HKBN丨SS, 台湾丨专线丨HKBN丨SS, 新加坡丨专线丨NTT丨SS, 日本丨专线丨NTT丨SS, 美国丨专线丨SEA丨SS] }
-    - { name: '📲 电报信息', type: select, proxies: ['🚀 节点选择', '🎯 全球直连', 香港丨专线丨LeaseWeb丨实验丨SS, 香港丨专线丨NTT丨SS, 香港丨专线丨HKBN丨SS, 台湾丨专线丨HKBN丨SS, 新加坡丨专线丨NTT丨SS, 日本丨专线丨NTT丨SS, 美国丨专线丨SEA丨SS] }
-    - { name: 'Ⓜ️ 微软服务', type: select, proxies: ['🚀 节点选择', '🎯 全球直连', 香港丨专线丨LeaseWeb丨实验丨SS, 香港丨专线丨NTT丨SS, 香港丨专线丨HKBN丨SS, 台湾丨专线丨HKBN丨SS, 新加坡丨专线丨NTT丨SS, 日本丨专线丨NTT丨SS, 美国丨专线丨SEA丨SS] }
-    - { name: '🍎 苹果服务', type: select, proxies: ['🚀 节点选择', '🎯 全球直连', 香港丨专线丨LeaseWeb丨实验丨SS, 香港丨专线丨NTT丨SS, 香港丨专线丨HKBN丨SS, 台湾丨专线丨HKBN丨SS, 新加坡丨专线丨NTT丨SS, 日本丨专线丨NTT丨SS, 美国丨专线丨SEA丨SS] }
-    - { name: '🎯 全球直连', type: select, proxies: [DIRECT, '🚀 节点选择', '♻️ 自动选择', 香港丨专线丨LeaseWeb丨实验丨SS, 香港丨专线丨NTT丨SS, 香港丨专线丨HKBN丨SS, 台湾丨专线丨HKBN丨SS, 新加坡丨专线丨NTT丨SS, 日本丨专线丨NTT丨SS, 美国丨专线丨SEA丨SS] }
-    - { name: '🛑 全球拦截', type: select, proxies: [REJECT, DIRECT, 香港丨专线丨LeaseWeb丨实验丨SS, 香港丨专线丨NTT丨SS, 香港丨专线丨HKBN丨SS, 台湾丨专线丨HKBN丨SS, 新加坡丨专线丨NTT丨SS, 日本丨专线丨NTT丨SS, 美国丨专线丨SEA丨SS] }
-    - { name: '🍃 应用净化', type: select, proxies: [REJECT, DIRECT, 香港丨专线丨LeaseWeb丨实验丨SS, 香港丨专线丨NTT丨SS, 香港丨专线丨HKBN丨SS, 台湾丨专线丨HKBN丨SS, 新加坡丨专线丨NTT丨SS, 日本丨专线丨NTT丨SS, 美国丨专线丨SEA丨SS] }
-    - { name: '🆎 AdBlock', type: select, proxies: [REJECT, DIRECT, 香港丨专线丨LeaseWeb丨实验丨SS, 香港丨专线丨NTT丨SS, 香港丨专线丨HKBN丨SS, 台湾丨专线丨HKBN丨SS, 新加坡丨专线丨NTT丨SS, 日本丨专线丨NTT丨SS, 美国丨专线丨SEA丨SS] }
-    - { name: '🐟 漏网之鱼', type: select, proxies: ['🎯 全球直连', '🚀 节点选择', DIRECT, 香港丨专线丨LeaseWeb丨实验丨SS, 香港丨专线丨NTT丨SS, 香港丨专线丨HKBN丨SS, 台湾丨专线丨HKBN丨SS, 新加坡丨专线丨NTT丨SS, 日本丨专线丨NTT丨SS, 美国丨专线丨SEA丨SS] }
+    - { name: '🚀 节点选择', type: select, proxies: ['♻️ 自动选择', DIRECT, vmess节点升级维护中丨请使用ss/ssr节点, 香港丨专线丨LeaseWeb丨1x, 台湾丨专线丨Hinet丨1x, 香港丨专线丨LeaseWeb丨SS, 香港丨专线丨NTT丨SS, 香港丨专线丨HKBN丨SS, 台湾丨专线丨HKBN丨SS, 新加坡丨专线丨NTT丨SS, 日本丨专线丨NTT丨SS, 美国丨专线丨SEA丨SS] }
+    - { name: '♻️ 自动选择', type: url-test, url: 'http://www.gstatic.com/generate_204', interval: 300, tolerance: 50, proxies: [vmess节点升级维护中丨请使用ss/ssr节点, 香港丨专线丨LeaseWeb丨1x, 台湾丨专线丨Hinet丨1x, 香港丨专线丨LeaseWeb丨SS, 香港丨专线丨NTT丨SS, 香港丨专线丨HKBN丨SS, 台湾丨专线丨HKBN丨SS, 新加坡丨专线丨NTT丨SS, 日本丨专线丨NTT丨SS, 美国丨专线丨SEA丨SS] }
+    - { name: '🌍 国外媒体', type: select, proxies: ['🚀 节点选择', '♻️ 自动选择', '🎯 全球直连', vmess节点升级维护中丨请使用ss/ssr节点, 香港丨专线丨LeaseWeb丨1x, 台湾丨专线丨Hinet丨1x, 香港丨专线丨LeaseWeb丨SS, 香港丨专线丨NTT丨SS, 香港丨专线丨HKBN丨SS, 台湾丨专线丨HKBN丨SS, 新加坡丨专线丨NTT丨SS, 日本丨专线丨NTT丨SS, 美国丨专线丨SEA丨SS] }
+    - { name: '📢 谷歌FCM', type: select, proxies: ['🚀 节点选择', '🎯 全球直连', '♻️ 自动选择', vmess节点升级维护中丨请使用ss/ssr节点, 香港丨专线丨LeaseWeb丨1x, 台湾丨专线丨Hinet丨1x, 香港丨专线丨LeaseWeb丨SS, 香港丨专线丨NTT丨SS, 香港丨专线丨HKBN丨SS, 台湾丨专线丨HKBN丨SS, 新加坡丨专线丨NTT丨SS, 日本丨专线丨NTT丨SS, 美国丨专线丨SEA丨SS] }
+    - { name: '📲 电报信息', type: select, proxies: ['🚀 节点选择', '🎯 全球直连', vmess节点升级维护中丨请使用ss/ssr节点, 香港丨专线丨LeaseWeb丨1x, 台湾丨专线丨Hinet丨1x, 香港丨专线丨LeaseWeb丨SS, 香港丨专线丨NTT丨SS, 香港丨专线丨HKBN丨SS, 台湾丨专线丨HKBN丨SS, 新加坡丨专线丨NTT丨SS, 日本丨专线丨NTT丨SS, 美国丨专线丨SEA丨SS] }
+    - { name: 'Ⓜ️ 微软服务', type: select, proxies: ['🚀 节点选择', '🎯 全球直连', vmess节点升级维护中丨请使用ss/ssr节点, 香港丨专线丨LeaseWeb丨1x, 台湾丨专线丨Hinet丨1x, 香港丨专线丨LeaseWeb丨SS, 香港丨专线丨NTT丨SS, 香港丨专线丨HKBN丨SS, 台湾丨专线丨HKBN丨SS, 新加坡丨专线丨NTT丨SS, 日本丨专线丨NTT丨SS, 美国丨专线丨SEA丨SS] }
+    - { name: '🍎 苹果服务', type: select, proxies: ['🚀 节点选择', '🎯 全球直连', vmess节点升级维护中丨请使用ss/ssr节点, 香港丨专线丨LeaseWeb丨1x, 台湾丨专线丨Hinet丨1x, 香港丨专线丨LeaseWeb丨SS, 香港丨专线丨NTT丨SS, 香港丨专线丨HKBN丨SS, 台湾丨专线丨HKBN丨SS, 新加坡丨专线丨NTT丨SS, 日本丨专线丨NTT丨SS, 美国丨专线丨SEA丨SS] }
+    - { name: '🎯 全球直连', type: select, proxies: [DIRECT, '🚀 节点选择', '♻️ 自动选择', vmess节点升级维护中丨请使用ss/ssr节点, 香港丨专线丨LeaseWeb丨1x, 台湾丨专线丨Hinet丨1x, 香港丨专线丨LeaseWeb丨SS, 香港丨专线丨NTT丨SS, 香港丨专线丨HKBN丨SS, 台湾丨专线丨HKBN丨SS, 新加坡丨专线丨NTT丨SS, 日本丨专线丨NTT丨SS, 美国丨专线丨SEA丨SS] }
+    - { name: '🛑 全球拦截', type: select, proxies: [REJECT, DIRECT, vmess节点升级维护中丨请使用ss/ssr节点, 香港丨专线丨LeaseWeb丨1x, 台湾丨专线丨Hinet丨1x, 香港丨专线丨LeaseWeb丨SS, 香港丨专线丨NTT丨SS, 香港丨专线丨HKBN丨SS, 台湾丨专线丨HKBN丨SS, 新加坡丨专线丨NTT丨SS, 日本丨专线丨NTT丨SS, 美国丨专线丨SEA丨SS] }
+    - { name: '🍃 应用净化', type: select, proxies: [REJECT, DIRECT, vmess节点升级维护中丨请使用ss/ssr节点, 香港丨专线丨LeaseWeb丨1x, 台湾丨专线丨Hinet丨1x, 香港丨专线丨LeaseWeb丨SS, 香港丨专线丨NTT丨SS, 香港丨专线丨HKBN丨SS, 台湾丨专线丨HKBN丨SS, 新加坡丨专线丨NTT丨SS, 日本丨专线丨NTT丨SS, 美国丨专线丨SEA丨SS] }
+    - { name: '🆎 AdBlock', type: select, proxies: [REJECT, DIRECT, vmess节点升级维护中丨请使用ss/ssr节点, 香港丨专线丨LeaseWeb丨1x, 台湾丨专线丨Hinet丨1x, 香港丨专线丨LeaseWeb丨SS, 香港丨专线丨NTT丨SS, 香港丨专线丨HKBN丨SS, 台湾丨专线丨HKBN丨SS, 新加坡丨专线丨NTT丨SS, 日本丨专线丨NTT丨SS, 美国丨专线丨SEA丨SS] }
+    - { name: '🐟 漏网之鱼', type: select, proxies: ['🎯 全球直连', '🚀 节点选择', DIRECT, vmess节点升级维护中丨请使用ss/ssr节点, 香港丨专线丨LeaseWeb丨1x, 台湾丨专线丨Hinet丨1x, 香港丨专线丨LeaseWeb丨SS, 香港丨专线丨NTT丨SS, 香港丨专线丨HKBN丨SS, 台湾丨专线丨HKBN丨SS, 新加坡丨专线丨NTT丨SS, 日本丨专线丨NTT丨SS, 美国丨专线丨SEA丨SS] }
 rules:
     - 'DOMAIN-SUFFIX,acl4.ssr,🎯 全球直连'
     - 'DOMAIN-SUFFIX,ip6-localhost,🎯 全球直连'
