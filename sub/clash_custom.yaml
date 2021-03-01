@@ -5,21 +5,21 @@ mode: Rule
 log-level: info
 external-controller: ':9090'
 proxies:
-    - { name: 香港丨专线丨HKBN丨1x, type: vmess, server: 6422cdda20941d4491747631e816649b.jijifun.com, port: '29999', uuid: 41E237CF-6377-0586-4B02-6C2C91A9C8DB, alterId: 0, cipher: auto, udp: false }
-    - { name: 香港丨专线丨HGC丨1x, type: vmess, server: 6422cdda20941d4491747631e816649b.jijifun.com, port: '30001', uuid: 41E237CF-6377-0586-4B02-6C2C91A9C8DB, alterId: 0, cipher: auto, udp: false }
-    - { name: 香港丨专线丨NTT丨1x, type: vmess, server: 6422cdda20941d4491747631e816649b.jijifun.com, port: '30002', uuid: 41E237CF-6377-0586-4B02-6C2C91A9C8DB, alterId: 0, cipher: auto, udp: false }
-    - { name: 新加坡丨专线丨NTT丨1x, type: vmess, server: 6422cdda20941d4491747631e816649b.jijifun.com, port: '30003', uuid: 41E237CF-6377-0586-4B02-6C2C91A9C8DB, alterId: 0, cipher: auto, udp: false }
-    - { name: 台湾丨专线丨Hinet丨1x, type: vmess, server: 6422cdda20941d4491747631e816649b.jijifun.com, port: '30004', uuid: 41E237CF-6377-0586-4B02-6C2C91A9C8DB, alterId: 0, cipher: auto, udp: false }
-    - { name: 美国丨专线丨SEA丨1x, type: vmess, server: 6422cdda20941d4491747631e816649b.jijifun.com, port: '30005', uuid: 41E237CF-6377-0586-4B02-6C2C91A9C8DB, alterId: 0, cipher: auto, udp: false }
-    - { name: 美国丨专线丨DMIT-HE丨1x, type: vmess, server: 6422cdda20941d4491747631e816649b.jijifun.com, port: '30006', uuid: 41E237CF-6377-0586-4B02-6C2C91A9C8DB, alterId: 0, cipher: auto, udp: false }
-    - { name: 日本丨专线丨NTT丨1x, type: vmess, server: 6422cdda20941d4491747631e816649b.jijifun.com, port: '30007', uuid: 41E237CF-6377-0586-4B02-6C2C91A9C8DB, alterId: 0, cipher: auto, udp: false }
-    - { name: 香港丨专线丨HGC丨SS, type: ss, server: 6422cdda20941d4491747631e816649b.jijifun.com, port: '20000', cipher: chacha20-ietf, password: '114514', plugin: obfs, plugin-opts: { mode: http, host: 5b802a4825.microsoft.com }, udp: false }
-    - { name: 香港丨专线丨NTT丨SS, type: ss, server: 6422cdda20941d4491747631e816649b.jijifun.com, port: '20001', cipher: chacha20-ietf, password: '114514', plugin: obfs, plugin-opts: { mode: http, host: 5b802a4825.microsoft.com }, udp: false }
-    - { name: 香港丨专线丨HKBN丨SS, type: ss, server: 6422cdda20941d4491747631e816649b.jijifun.com, port: '20002', cipher: chacha20-ietf, password: '114514', plugin: obfs, plugin-opts: { mode: http, host: 5b802a4825.microsoft.com }, udp: false }
-    - { name: 台湾丨专线丨HINET丨SS, type: ss, server: 6422cdda20941d4491747631e816649b.jijifun.com, port: '20007', cipher: chacha20-ietf, password: '114514', plugin: obfs, plugin-opts: { mode: http, host: 5b802a4825.microsoft.com }, udp: false }
-    - { name: 新加坡丨专线丨NTT丨SS, type: ss, server: 6422cdda20941d4491747631e816649b.jijifun.com, port: '20003', cipher: chacha20-ietf, password: '114514', plugin: obfs, plugin-opts: { mode: http, host: 5b802a4825.microsoft.com }, udp: false }
-    - { name: 日本丨专线丨NTT丨SS, type: ss, server: 6422cdda20941d4491747631e816649b.jijifun.com, port: '20006', cipher: chacha20-ietf, password: '114514', plugin: obfs, plugin-opts: { mode: http, host: 5b802a4825.microsoft.com }, udp: false }
-    - { name: 美国丨专线丨SEA丨SS, type: ss, server: 6422cdda20941d4491747631e816649b.jijifun.com, port: '20005', cipher: chacha20-ietf, password: '114514', plugin: obfs, plugin-opts: { mode: http, host: 5b802a4825.microsoft.com }, udp: false }
+    - { name: 香港丨专线丨HKBN丨1x, type: vmess, server: 642.jijifun.com, port: '29999', uuid: 41E237CF-6377-0586-4B02-6C2C91A9C8DB, alterId: 0, cipher: auto, udp: false }
+    - { name: 香港丨专线丨HGC丨1x, type: vmess, server: 642.jijifun.com, port: '30001', uuid: 41E237CF-6377-0586-4B02-6C2C91A9C8DB, alterId: 0, cipher: auto, udp: false }
+    - { name: 香港丨专线丨NTT丨1x, type: vmess, server: 642.jijifun.com, port: '30002', uuid: 41E237CF-6377-0586-4B02-6C2C91A9C8DB, alterId: 0, cipher: auto, udp: false }
+    - { name: 新加坡丨专线丨NTT丨1x, type: vmess, server: 642.jijifun.com, port: '30003', uuid: 41E237CF-6377-0586-4B02-6C2C91A9C8DB, alterId: 0, cipher: auto, udp: false }
+    - { name: 台湾丨专线丨Hinet丨1x, type: vmess, server: 642.jijifun.com, port: '30004', uuid: 41E237CF-6377-0586-4B02-6C2C91A9C8DB, alterId: 0, cipher: auto, udp: false }
+    - { name: 美国丨专线丨SEA丨1x, type: vmess, server: 642.jijifun.com, port: '30005', uuid: 41E237CF-6377-0586-4B02-6C2C91A9C8DB, alterId: 0, cipher: auto, udp: false }
+    - { name: 美国丨专线丨DMIT-HE丨1x, type: vmess, server: 642.jijifun.com, port: '30006', uuid: 41E237CF-6377-0586-4B02-6C2C91A9C8DB, alterId: 0, cipher: auto, udp: false }
+    - { name: 日本丨专线丨NTT丨1x, type: vmess, server: 642.jijifun.com, port: '30007', uuid: 41E237CF-6377-0586-4B02-6C2C91A9C8DB, alterId: 0, cipher: auto, udp: false }
+    - { name: 香港丨专线丨HGC丨SS, type: ss, server: 642.jijifun.com, port: '20000', cipher: chacha20-ietf, password: '114514', plugin: obfs, plugin-opts: { mode: http, host: 5b802a4825.microsoft.com }, udp: false }
+    - { name: 香港丨专线丨NTT丨SS, type: ss, server: 642.jijifun.com, port: '20001', cipher: chacha20-ietf, password: '114514', plugin: obfs, plugin-opts: { mode: http, host: 5b802a4825.microsoft.com }, udp: false }
+    - { name: 香港丨专线丨HKBN丨SS, type: ss, server: 642.jijifun.com, port: '20002', cipher: chacha20-ietf, password: '114514', plugin: obfs, plugin-opts: { mode: http, host: 5b802a4825.microsoft.com }, udp: false }
+    - { name: 台湾丨专线丨HINET丨SS, type: ss, server: 642.jijifun.com, port: '20007', cipher: chacha20-ietf, password: '114514', plugin: obfs, plugin-opts: { mode: http, host: 5b802a4825.microsoft.com }, udp: false }
+    - { name: 新加坡丨专线丨NTT丨SS, type: ss, server: 642.jijifun.com, port: '20003', cipher: chacha20-ietf, password: '114514', plugin: obfs, plugin-opts: { mode: http, host: 5b802a4825.microsoft.com }, udp: false }
+    - { name: 日本丨专线丨NTT丨SS, type: ss, server: 642.jijifun.com, port: '20006', cipher: chacha20-ietf, password: '114514', plugin: obfs, plugin-opts: { mode: http, host: 5b802a4825.microsoft.com }, udp: false }
+    - { name: 美国丨专线丨SEA丨SS, type: ss, server: 642.jijifun.com, port: '20005', cipher: chacha20-ietf, password: '114514', plugin: obfs, plugin-opts: { mode: http, host: 5b802a4825.microsoft.com }, udp: false }
 proxy-groups:
     - { name: '🚀 节点选择', type: select, proxies: ['♻️ 自动选择', DIRECT, 香港丨专线丨HKBN丨1x, 香港丨专线丨HGC丨1x, 香港丨专线丨NTT丨1x, 新加坡丨专线丨NTT丨1x, 台湾丨专线丨Hinet丨1x, 美国丨专线丨SEA丨1x, 美国丨专线丨DMIT-HE丨1x, 日本丨专线丨NTT丨1x, 香港丨专线丨HGC丨SS, 香港丨专线丨NTT丨SS, 香港丨专线丨HKBN丨SS, 台湾丨专线丨HINET丨SS, 新加坡丨专线丨NTT丨SS, 日本丨专线丨NTT丨SS, 美国丨专线丨SEA丨SS] }
     - { name: '♻️ 自动选择', type: url-test, url: 'http://www.gstatic.com/generate_204', interval: 300, tolerance: 50, proxies: [香港丨专线丨HKBN丨1x, 香港丨专线丨HGC丨1x, 香港丨专线丨NTT丨1x, 新加坡丨专线丨NTT丨1x, 台湾丨专线丨Hinet丨1x, 美国丨专线丨SEA丨1x, 美国丨专线丨DMIT-HE丨1x, 日本丨专线丨NTT丨1x, 香港丨专线丨HGC丨SS, 香港丨专线丨NTT丨SS, 香港丨专线丨HKBN丨SS, 台湾丨专线丨HINET丨SS, 新加坡丨专线丨NTT丨SS, 日本丨专线丨NTT丨SS, 美国丨专线丨SEA丨SS] }
