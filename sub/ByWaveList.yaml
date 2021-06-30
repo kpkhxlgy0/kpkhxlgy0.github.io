@@ -1,0 +1,15 @@
+proxies:
+    - { name: 香港丨专线丨HKBN丨1x, type: vmess, server: 642.jijifun.com, port: '29999', uuid: 41E237CF-6377-0586-4B02-6C2C91A9C8DB, alterId: 0, cipher: auto, udp: false }
+    - { name: 香港丨专线丨HGC丨1x, type: vmess, server: 642.jijifun.com, port: '30001', uuid: 41E237CF-6377-0586-4B02-6C2C91A9C8DB, alterId: 0, cipher: auto, udp: false }
+    - { name: 香港丨专线丨NTT丨1x, type: vmess, server: 642.jijifun.com, port: '30002', uuid: 41E237CF-6377-0586-4B02-6C2C91A9C8DB, alterId: 0, cipher: auto, udp: false }
+    - { name: 新加坡丨专线丨NTT丨1x, type: vmess, server: 642.jijifun.com, port: '30003', uuid: 41E237CF-6377-0586-4B02-6C2C91A9C8DB, alterId: 0, cipher: auto, udp: false }
+    - { name: 台湾丨专线丨Hinet丨1x, type: vmess, server: 642.jijifun.com, port: '30004', uuid: 41E237CF-6377-0586-4B02-6C2C91A9C8DB, alterId: 0, cipher: auto, udp: false }
+    - { name: 美国丨专线丨Linode丨1x, type: vmess, server: 642.jijifun.com, port: '30005', uuid: 41E237CF-6377-0586-4B02-6C2C91A9C8DB, alterId: 0, cipher: auto, udp: false }
+    - { name: 日本丨专线丨NTT丨1x, type: vmess, server: 642.jijifun.com, port: '30007', uuid: 41E237CF-6377-0586-4B02-6C2C91A9C8DB, alterId: 0, cipher: auto, udp: false }
+    - { name: 香港丨专线丨HGC丨SS, type: ss, server: 642.jijifun.com, port: '20000', cipher: chacha20-ietf, password: '114514', plugin: obfs, plugin-opts: { mode: http, host: 5b802a4825.microsoft.com }, udp: false }
+    - { name: 香港丨专线丨NTT丨SS, type: ss, server: 642.jijifun.com, port: '20001', cipher: chacha20-ietf, password: '114514', plugin: obfs, plugin-opts: { mode: http, host: 5b802a4825.microsoft.com }, udp: false }
+    - { name: 香港丨专线丨HKBN丨SS, type: ss, server: 642.jijifun.com, port: '20002', cipher: chacha20-ietf, password: '114514', plugin: obfs, plugin-opts: { mode: http, host: 5b802a4825.microsoft.com }, udp: false }
+    - { name: 台湾丨专线丨HINET丨SS, type: ss, server: 642.jijifun.com, port: '20007', cipher: chacha20-ietf, password: '114514', plugin: obfs, plugin-opts: { mode: http, host: 5b802a4825.microsoft.com }, udp: false }
+    - { name: 新加坡丨专线丨NTT丨SS, type: ss, server: 642.jijifun.com, port: '20003', cipher: chacha20-ietf, password: '114514', plugin: obfs, plugin-opts: { mode: http, host: 5b802a4825.microsoft.com }, udp: false }
+    - { name: 日本丨专线丨NTT丨SS, type: ss, server: 642.jijifun.com, port: '20006', cipher: chacha20-ietf, password: '114514', plugin: obfs, plugin-opts: { mode: http, host: 5b802a4825.microsoft.com }, udp: false }
+    - { name: 美国丨专线丨Linode丨SS, type: ss, server: 642.jijifun.com, port: '20005', cipher: chacha20-ietf, password: '114514', plugin: obfs, plugin-opts: { mode: http, host: 5b802a4825.microsoft.com }, udp: false }
