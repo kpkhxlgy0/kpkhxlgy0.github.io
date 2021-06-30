@@ -1,0 +1,568 @@
+# Port of HTTP(S) proxy server on the local end
+# port: 7890
+
+# Port of SOCKS5 proxy server on the local end
+# socks-port: 7891
+
+# Transparent proxy server port for Linux and macOS (Redirect TCP and TProxy UDP)
+# redir-port: 7892
+
+# Transparent proxy server port for Linux (TProxy TCP and TProxy UDP)
+# tproxy-port: 7893
+
+# HTTP(S) and SOCKS5 server on the same port
+mixed-port: 7890
+
+# authentication of local SOCKS5/HTTP(S) server
+# authentication:
+#  - "user1:pass1"
+#  - "user2:pass2"
+
+# Set to true to allow connections to the local-end server from
+# other LAN IP addresses
+allow-lan: false
+
+# This is only applicable when `allow-lan` is `true`
+# '*': bind all IP addresses
+# 192.168.122.11: bind a single IPv4 address
+# "[aaaa::a8aa:ff:fe09:57d8]": bind a single IPv6 address
+bind-address: '*'
+
+# Clash router working mode
+# rule: rule-based packet routing
+# global: all packets will be forwarded to a single endpoint
+# direct: directly forward the packets to the Internet
+mode: rule
+
+# Clash by default prints logs to STDOUT
+# info / warning / error / debug / silent
+log-level: info
+
+# When set to false, resolver won't translate hostnames to IPv6 addresses
+ipv6: false
+
+# RESTful web API listening address
+external-controller: 127.0.0.1:9090
+
+# A relative path to the configuration directory or an absolute path to a
+# directory in which you put some static web resource. Clash core will then
+# serve it at `${API}/ui`.
+# external-ui: folder
+
+# Secret for the RESTful API (optional)
+# Authenticate by spedifying HTTP header `Authorization: Bearer ${secret}`
+# ALWAYS set a secret if RESTful API is listening on 0.0.0.0
+# secret: ""
+
+# Outbound interface name
+# interface-name: en0
+
+# Static hosts for DNS server and connection establishment (like /etc/hosts)
+#
+# Wildcard hostnames are supported (e.g. *.clash.dev, *.foo.*.example.com)
+# Non-wildcard domain names have a higher priority than wildcard domain names
+# e.g. foo.example.com > *.example.com > .example.com
+# P.S. +.foo.com equals to .foo.com and foo.com
+hosts:
+  # '*.clash.dev': 127.0.0.1
+  # '.dev': 127.0.0.1
+  # 'alpha.clash.dev': '::1'
+
+  # Firebase Cloud Messaging
+  'mtalk.google.com': 108.177.125.188
+  # Google Dl
+  'dl.google.com': 180.163.151.161
+  'dl.l.google.com': 180.163.151.161
+
+# DNS server settings
+# This section is optional. When not present, the DNS server will be disabled.
+dns:
+  enable: false
+  listen: 0.0.0.0:53
+  # ipv6: false # when the false, response to AAAA questions will be empty
+
+  # These nameservers are used to resolve the DNS nameserver hostnames below.
+  # Specify IP addresses only
+  default-nameserver:
+    - 119.29.29.29
+  enhanced-mode: redir-host # or fake-ip
+  fake-ip-range: 198.18.0.1/16 # Fake IP addresses pool CIDR
+  # use-hosts: true # lookup hosts and return IP record
+
+  # Hostnames in this list will not be resolved with fake IPs
+  # i.e. questions to these domain names will always be answered with their
+  # real IP addresses
+  fake-ip-filter:
+    - '*.lan'
+    - localhost.ptlogin2.qq.com
+    - '+.srv.nintendo.net'
+    - '+.stun.playstation.net'
+    - '+.msftconnecttest.com'
+    - '+.msftncsi.com'
+    - '+.xboxlive.com'
+    - 'msftconnecttest.com'
+    - 'xbox.*.microsoft.com'
+    - '*.battlenet.com.cn'
+    - '*.battlenet.com'
+    - '*.blzstatic.cn'
+    - '*.battle.net'
+  
+  # Supports UDP, TCP, DoT, DoH. You can specify the port to connect to.
+  # All DNS questions are sent directly to the nameserver, without proxies
+  # involved. Clash answers the DNS question with the first result gathered.
+  nameserver:
+    - 119.29.29.29
+    # - tls://dns.rubyfish.cn:853 # DNS over TLS
+    # - https://1.1.1.1/dns-query # DNS over HTTPS
+
+  # When `fallback` is present, the DNS server will send concurrent requests
+  # to the servers in this section along with servers in `nameservers`.
+  # The answers from fallback servers are used when the GEOIP country
+  # is not `CN`.
+  # fallback:
+  #   - tcp://1.1.1.1
+
+  # If IP addresses resolved with servers in `nameservers` are in the specified
+  # subnets below, they are considered invalid and results from `fallback`
+  # servers are used instead.
+  #
+  # IP address resolved with servers in `nameserver` is used when
+  # `fallback-filter.geoip` is true and when GEOIP of the IP address is `CN`.
+  #
+  # If `fallback-filter.geoip` is false, results from `nameserver` nameservers
+  # are always used if not match `fallback-filter.ipcidr`.
+  #
+  # This is a countermeasure against DNS pollution attacks.
+  fallback-filter:
+    geoip: true
+    ipcidr:
+      # - 240.0.0.0/4
+    # domain:
+    #   - '+.google.com'
+    #   - '+.facebook.com'
+    #   - '+.youtube.com'
+
+#
+# https://github.com/Dreamacro/clash/wiki/premium-core-features
+#
+# tun:
+#   enable: true
+#   stack: system # or gvisor
+#   # dns-hijack:
+#   #   - 8.8.8.8:53
+#   #   - tcp://8.8.8.8:53
+#   macOS-auto-route: true # auto set global route
+#   macOS-auto-detect-interface: true # conflict with interface-name
+
+proxies:
+    - { name: 香港丨专线丨HKBN丨1x, type: vmess, server: 642.jijifun.com, port: '29999', uuid: 41E237CF-6377-0586-4B02-6C2C91A9C8DB, alterId: 0, cipher: auto, udp: false }
+    - { name: 香港丨专线丨HGC丨1x, type: vmess, server: 642.jijifun.com, port: '30001', uuid: 41E237CF-6377-0586-4B02-6C2C91A9C8DB, alterId: 0, cipher: auto, udp: false }
+    - { name: 香港丨专线丨NTT丨1x, type: vmess, server: 642.jijifun.com, port: '30002', uuid: 41E237CF-6377-0586-4B02-6C2C91A9C8DB, alterId: 0, cipher: auto, udp: false }
+    - { name: 新加坡丨专线丨NTT丨1x, type: vmess, server: 642.jijifun.com, port: '30003', uuid: 41E237CF-6377-0586-4B02-6C2C91A9C8DB, alterId: 0, cipher: auto, udp: false }
+    - { name: 台湾丨专线丨Hinet丨1x, type: vmess, server: 642.jijifun.com, port: '30004', uuid: 41E237CF-6377-0586-4B02-6C2C91A9C8DB, alterId: 0, cipher: auto, udp: false }
+    - { name: 美国丨专线丨Linode丨1x, type: vmess, server: 642.jijifun.com, port: '30005', uuid: 41E237CF-6377-0586-4B02-6C2C91A9C8DB, alterId: 0, cipher: auto, udp: false }
+    - { name: 日本丨专线丨NTT丨1x, type: vmess, server: 642.jijifun.com, port: '30007', uuid: 41E237CF-6377-0586-4B02-6C2C91A9C8DB, alterId: 0, cipher: auto, udp: false }
+    - { name: 香港丨专线丨HGC丨SS, type: ss, server: 642.jijifun.com, port: '20000', cipher: chacha20-ietf, password: '114514', plugin: obfs, plugin-opts: { mode: http, host: 5b802a4825.microsoft.com }, udp: false }
+    - { name: 香港丨专线丨NTT丨SS, type: ss, server: 642.jijifun.com, port: '20001', cipher: chacha20-ietf, password: '114514', plugin: obfs, plugin-opts: { mode: http, host: 5b802a4825.microsoft.com }, udp: false }
+    - { name: 香港丨专线丨HKBN丨SS, type: ss, server: 642.jijifun.com, port: '20002', cipher: chacha20-ietf, password: '114514', plugin: obfs, plugin-opts: { mode: http, host: 5b802a4825.microsoft.com }, udp: false }
+    - { name: 台湾丨专线丨HINET丨SS, type: ss, server: 642.jijifun.com, port: '20007', cipher: chacha20-ietf, password: '114514', plugin: obfs, plugin-opts: { mode: http, host: 5b802a4825.microsoft.com }, udp: false }
+    - { name: 新加坡丨专线丨NTT丨SS, type: ss, server: 642.jijifun.com, port: '20003', cipher: chacha20-ietf, password: '114514', plugin: obfs, plugin-opts: { mode: http, host: 5b802a4825.microsoft.com }, udp: false }
+    - { name: 日本丨专线丨NTT丨SS, type: ss, server: 642.jijifun.com, port: '20006', cipher: chacha20-ietf, password: '114514', plugin: obfs, plugin-opts: { mode: http, host: 5b802a4825.microsoft.com }, udp: false }
+    - { name: 美国丨专线丨Linode丨SS, type: ss, server: 642.jijifun.com, port: '20005', cipher: chacha20-ietf, password: '114514', plugin: obfs, plugin-opts: { mode: http, host: 5b802a4825.microsoft.com }, udp: false }
+    - {"name":"AA-V2ray-HK-HGC","type":"vmess","server":"cdn-cn.nekocloud.cn","port":19083,"uuid":"b1f64afe-67ae-3b44-bcb3-5ff2bc913170","alterId":0,"cipher":"auto","udp":true,"network":"ws","ws-path":"/dahjwuh","ws-headers":{"Host":"cdn-cn.nekocloud.cn"}}
+    - {"name":"AA-V2ray-HK-HKBN","type":"vmess","server":"cdn-cn.nekocloud.cn","port":19085,"uuid":"b1f64afe-67ae-3b44-bcb3-5ff2bc913170","alterId":0,"cipher":"auto","udp":true,"network":"ws","ws-path":"/dahjwuh","ws-headers":{"Host":"cdn-cn.nekocloud.cn"}}
+    - {"name":"AA-V2ray-HK-HKBN.02","type":"vmess","server":"cdn-cn.nekocloud.cn","port":19092,"uuid":"b1f64afe-67ae-3b44-bcb3-5ff2bc913170","alterId":0,"cipher":"auto","udp":true,"network":"ws","ws-path":"/dahjwuh","ws-headers":{"Host":"cdn-cn.nekocloud.cn"}}
+    - {"name":"AA-V2ray-HK-HKT.01","type":"vmess","server":"cdn-cn.nekocloud.cn","port":19094,"uuid":"b1f64afe-67ae-3b44-bcb3-5ff2bc913170","alterId":0,"cipher":"auto","udp":true,"network":"ws","ws-path":"/dahjwuh","ws-headers":{"Host":"cdn-cn.nekocloud.cn"}}
+    - {"name":"AA-V2ray-HK-HKT.02","type":"vmess","server":"cdn-cn.nekocloud.cn","port":19040,"uuid":"b1f64afe-67ae-3b44-bcb3-5ff2bc913170","alterId":0,"cipher":"auto","udp":true,"network":"ws","ws-path":"/dahjwuh","ws-headers":{"Host":"cdn-cn.nekocloud.cn"}}
+    - {"name":"AA-V2ray-HK-HKT.03","type":"vmess","server":"cdn-cn.nekocloud.cn","port":10007,"uuid":"b1f64afe-67ae-3b44-bcb3-5ff2bc913170","alterId":0,"cipher":"auto","udp":true,"network":"ws","ws-path":"/dahjwuh","ws-headers":{"Host":"cdn-cn.nekocloud.cn"}}
+    - {"name":"AA-V2ray-HK-NTT.01","type":"vmess","server":"cdn-cn.nekocloud.cn","port":19084,"uuid":"b1f64afe-67ae-3b44-bcb3-5ff2bc913170","alterId":0,"cipher":"auto","udp":true,"network":"ws","ws-path":"/catnet","ws-headers":{"Host":"cdn-cn.nekocloud.cn"}}
+    - {"name":"AA-V2ray-HK-NTT.03","type":"vmess","server":"cdn-cn.nekocloud.cn","port":19049,"uuid":"b1f64afe-67ae-3b44-bcb3-5ff2bc913170","alterId":0,"cipher":"auto","udp":true,"network":"ws","ws-path":"/dahjwuh","ws-headers":{"Host":"cdn-cn.nekocloud.cn"}}
+    - {"name":"AA-V2ray-JP-NTT.01","type":"vmess","server":"cdn-cn.nekocloud.cn","port":19050,"uuid":"b1f64afe-67ae-3b44-bcb3-5ff2bc913170","alterId":0,"cipher":"auto","udp":true,"network":"ws","ws-path":"/catnet","ws-headers":{"Host":"cdn-cn.nekocloud.cn"}}
+    - {"name":"AA-V2ray-JP-NTT.02","type":"vmess","server":"cdn-cn.nekocloud.cn","port":10006,"uuid":"b1f64afe-67ae-3b44-bcb3-5ff2bc913170","alterId":0,"cipher":"auto","udp":true,"network":"ws","ws-path":"/catnet","ws-headers":{"Host":"cdn-cn.nekocloud.cn"}}
+    - {"name":"AA-V2ray-JP-NTT.03","type":"vmess","server":"cdn-cn.nekocloud.cn","port":19055,"uuid":"b1f64afe-67ae-3b44-bcb3-5ff2bc913170","alterId":0,"cipher":"auto","udp":true,"network":"ws","ws-path":"/catnet","ws-headers":{"Host":"cdn-cn.nekocloud.cn"}}
+    - {"name":"AA-V2ray-RU-Selectel","type":"vmess","server":"cdn-cn.nekocloud.cn","port":19080,"uuid":"b1f64afe-67ae-3b44-bcb3-5ff2bc913170","alterId":0,"cipher":"auto","udp":true,"network":"ws","ws-path":"/dahjwuh","ws-headers":{"Host":"cdn-cn.nekocloud.cn"}}
+    - {"name":"AA-V2ray-SG-Linode","type":"vmess","server":"cdn-cn.nekocloud.cn","port":19057,"uuid":"b1f64afe-67ae-3b44-bcb3-5ff2bc913170","alterId":0,"cipher":"auto","udp":true,"network":"ws","ws-path":"/catnet","ws-headers":{"Host":"cdn-cn.nekocloud.cn"}}
+    - {"name":"AA-V2ray-SG-NTT.01","type":"vmess","server":"cdn-cn.nekocloud.cn","port":19079,"uuid":"b1f64afe-67ae-3b44-bcb3-5ff2bc913170","alterId":0,"cipher":"auto","udp":true,"network":"ws","ws-path":"/dahjwuh","ws-headers":{"Host":"cdn-cn.nekocloud.cn"}}
+    - {"name":"AA-V2ray-TW-HiNet.01","type":"vmess","server":"cdn-cn.nekocloud.cn","port":19046,"uuid":"b1f64afe-67ae-3b44-bcb3-5ff2bc913170","alterId":0,"cipher":"auto","udp":true,"network":"ws","ws-path":"/catnet","ws-headers":{"Host":"cdn-cn.nekocloud.cn"}}
+    - {"name":"AA-V2ray-TW-HiNet.02","type":"vmess","server":"cdn-cn.nekocloud.cn","port":19047,"uuid":"b1f64afe-67ae-3b44-bcb3-5ff2bc913170","alterId":0,"cipher":"auto","udp":true,"network":"ws","ws-path":"/dahjwuh","ws-headers":{"Host":"cdn-cn.nekocloud.cn"}}
+    - {"name":"AA-V2ray-TW-HiNet.03","type":"vmess","server":"cdn-cn.nekocloud.cn","port":19048,"uuid":"b1f64afe-67ae-3b44-bcb3-5ff2bc913170","alterId":0,"cipher":"auto","udp":true,"network":"ws","ws-path":"/catnet","ws-headers":{"Host":"cdn-cn.nekocloud.cn"}}
+    - {"name":"AA-V2ray-TW-HiNet.04","type":"vmess","server":"cdn-cn.nekocloud.cn","port":19038,"uuid":"b1f64afe-67ae-3b44-bcb3-5ff2bc913170","alterId":0,"cipher":"auto","udp":true,"network":"ws","ws-path":"/catnet","ws-headers":{"Host":"cdn-cn.nekocloud.cn"}}
+    - {"name":"AA-V2ray-TW-HiNet.05","type":"vmess","server":"cdn-cn.nekocloud.cn","port":19045,"uuid":"b1f64afe-67ae-3b44-bcb3-5ff2bc913170","alterId":0,"cipher":"auto","udp":true,"network":"ws","ws-path":"/catnet","ws-headers":{"Host":"cdn-cn.nekocloud.cn"}}
+    - {"name":"AA-V2ray-US-Fremont","type":"vmess","server":"cdn-cn.nekocloud.cn","port":19016,"uuid":"b1f64afe-67ae-3b44-bcb3-5ff2bc913170","alterId":0,"cipher":"auto","udp":true,"network":"ws","ws-path":"/","ws-headers":{"Host":"cdn-cn.nekocloud.cn"}}
+    - {"name":"AA-V2ray-US-HE.01","type":"vmess","server":"cdn-cn.nekocloud.cn","port":19043,"uuid":"b1f64afe-67ae-3b44-bcb3-5ff2bc913170","alterId":0,"cipher":"auto","udp":true,"network":"ws","ws-path":"/catnet","ws-headers":{"Host":"cdn-cn.nekocloud.cn"}}
+    - {"name":"AA-V2ray-US-HE.02","type":"vmess","server":"cdn-cn.nekocloud.cn","port":19042,"uuid":"b1f64afe-67ae-3b44-bcb3-5ff2bc913170","alterId":0,"cipher":"auto","udp":true,"network":"ws","ws-path":"/catnet","ws-headers":{"Host":"cdn-cn.nekocloud.cn"}}
+    - {"name":"AA-V2ray-US-HE.03","type":"vmess","server":"cdn-cn.nekocloud.cn","port":19029,"uuid":"b1f64afe-67ae-3b44-bcb3-5ff2bc913170","alterId":0,"cipher":"auto","udp":true,"network":"ws","ws-path":"/catnet","ws-headers":{"Host":"cdn-cn.nekocloud.cn"}}
+    - {"name":"AA-V2ray-US.HE.04","type":"vmess","server":"cdn-cn.nekocloud.cn","port":10002,"uuid":"b1f64afe-67ae-3b44-bcb3-5ff2bc913170","alterId":0,"cipher":"auto","udp":true,"network":"ws","ws-path":"/catnet","ws-headers":{"Host":"cdn-cn.nekocloud.cn"}}
+
+# 服务器节点订阅
+proxy-providers:
+  # name: # Provider 名称
+  #   type: http # http 或 file
+  #   path: # 文件路径
+  #   url: # 只有当类型为 HTTP 时才可用，您不需要在本地空间中创建新文件。
+  #   interval: # 自动更新间隔，仅在类型为 HTTP 时可用
+  #   health-check: # 健康检查选项从此处开始
+  #     enable:
+  #     url: 
+  #     interval: 
+
+  #
+  # 「url」参数填写订阅链接
+  #
+  # 订阅链接可以使用 API 进行转换，如：https://dove.589669.xyz/web
+  #
+  #
+
+  # 此处只是订阅示例，如果没有订阅链接的使用需求，此处及 proxy-groups 的相关内容可删除
+
+  ByWaveList: #「冲鸭机场」订阅
+    type: http
+    url: "https://kpkhxlgy0.github.io/sub/ByWaveList.yaml" # 放机场订阅链接
+    interval: 3600
+    path: ./Proxy/ByWaveList.yaml # 注意此处文件名不可相同
+    health-check:
+      enable: true
+      interval: 600
+      url: http://www.gstatic.com/generate_204
+      
+  XinJieList: #「冲鸭机场」订阅
+    type: http
+    url: "https://kpkhxlgy0.github.io/sub/XinJieList.yaml" # 放机场订阅链接
+    interval: 3600
+    path: ./Proxy/XinJieList.yaml # 注意此处文件名不可相同
+    health-check:
+      enable: true
+      interval: 600
+      url: http://www.gstatic.com/generate_204
+
+  # DuckDuckGoUS: #「冲鸭机场」订阅美国地区节点
+  #   type: http
+  #   url: "https://raw.githubusercontent.com/DivineEngine/Profiles/master/Clash/ProxyList/US.yaml" # 放机场订阅链接
+  #   interval: 3600
+  #   path: ./Proxy/US.yaml # 注意此处文件名不可相同
+  #   health-check:
+  #     enable: true
+  #     interval: 600
+  #     url: http://www.gstatic.com/generate_204
+
+proxy-groups:
+# 策略组示例请查阅 Clash 项目 README 以使用最新格式：https://github.com/Dreamacro/clash/wiki/configuration
+
+#
+# 策略组说明
+#
+# 「MATCH」类似 Surge 的「Final」，此处用于选择白名单模式(PROXY 策略)和黑名单模式(DIRECT 策略)
+#
+# 「Streaming」和「StreamingSE」比较好理解，有专用于流媒体的节点就设置到其中，如果没有「StreamingSE」的需求可以连带 Rule 部分一起删掉，「Streaming」需至少保留 Rule，用「PROXY」即可。
+#
+# 「PROXY」是代理规则策略，它可以指定为某个节点或嵌套一个其他策略组，如：「自动测试」、「Fallback」或「负载均衡」的策略组，关于这 3 个策略组的具体示例可以看官方示例：https://github.com/Dreamacro/clash
+#
+
+  # 注意此处的「use」而不是「proxies」，当然也可以不用在此先嵌套一个策略组进行选择，可以直接使用，如
+  #
+  # # 代理节点选择
+  # - name: "PROXY"
+  #   type: select
+  #   use:
+  #     - DuckDuckGo # 嵌套使用订阅节点策略组
+  #   proxies:
+  #     - Fallback
+  #     - 1
+  #     - 2
+  #     - 3
+  #
+  # 但如果订阅节点很多选起来就很麻烦，不如先嵌套一个策略组进行手动或自动的选择。
+
+  # 手动选择订阅节点
+  - name: "ByWave"
+    type: select # 亦可使用 fallback 或 load-balance
+    use: # 注意此处是「use」
+      - ByWaveList # 这是上面「proxy-providers」的名称
+      
+  - name: "XinJie"
+    type: select # 亦可使用 fallback 或 load-balance
+    use: # 注意此处是「use」
+      - XinJieList # 这是上面「proxy-providers」的名称
+
+  # - name: "US"
+  #   type: select # 亦可使用 fallback 或 load-balance
+  #   use: # 注意此处是「use」
+  #     - DuckDuckGoUS # 这是上面「proxy-providers」的名称
+
+  # Fallback 比较实用的策略组类型，用于测试服务器节点的可用性，当第一个节点不可用时切换到第二个，以此类推。
+  - name: "Fallback"
+    type: fallback
+    proxies:
+      - 香港丨专线丨HKBN丨1x
+      - 香港丨专线丨HGC丨1x
+      - 香港丨专线丨NTT丨1x
+      - 新加坡丨专线丨NTT丨1x
+      - 台湾丨专线丨Hinet丨1x
+      - 美国丨专线丨Linode丨1x
+      - 日本丨专线丨NTT丨1x
+      - 香港丨专线丨HGC丨SS
+      - 香港丨专线丨NTT丨SS
+      - 香港丨专线丨HKBN丨SS
+      - 台湾丨专线丨HINET丨SS
+      - 新加坡丨专线丨NTT丨SS
+      - 日本丨专线丨NTT丨SS
+      - 美国丨专线丨Linode丨SS
+      - AA-V2ray-HK-HGC
+      - AA-V2ray-HK-HKBN
+      - AA-V2ray-HK-HKBN.02
+      - AA-V2ray-HK-HKT.01
+      - AA-V2ray-HK-HKT.02
+      - AA-V2ray-HK-HKT.03
+      - AA-V2ray-HK-NTT.01
+      - AA-V2ray-HK-NTT.03
+      - AA-V2ray-JP-NTT.01
+      - AA-V2ray-JP-NTT.02
+      - AA-V2ray-JP-NTT.03
+      - AA-V2ray-RU-Selectel
+      - AA-V2ray-SG-Linode
+      - AA-V2ray-SG-NTT.01
+      - AA-V2ray-TW-HiNet.01
+      - AA-V2ray-TW-HiNet.02
+      - AA-V2ray-TW-HiNet.03
+      - AA-V2ray-TW-HiNet.04
+      - AA-V2ray-TW-HiNet.05
+      - AA-V2ray-US-Fremont
+      - AA-V2ray-US-HE.01
+      - AA-V2ray-US-HE.02
+      - AA-V2ray-US-HE.03
+      - AA-V2ray-US.HE.04
+    url: 'http://www.gstatic.com/generate_204'
+    interval: 300
+
+  # 代理节点选择
+  - name: "PROXY"
+    type: select
+    proxies:
+      - Fallback
+      - 香港丨专线丨HKBN丨1x
+      - 香港丨专线丨HGC丨1x
+      - 香港丨专线丨NTT丨1x
+      - 新加坡丨专线丨NTT丨1x
+      - 台湾丨专线丨Hinet丨1x
+      - 美国丨专线丨Linode丨1x
+      - 日本丨专线丨NTT丨1x
+      - 香港丨专线丨HGC丨SS
+      - 香港丨专线丨NTT丨SS
+      - 香港丨专线丨HKBN丨SS
+      - 台湾丨专线丨HINET丨SS
+      - 新加坡丨专线丨NTT丨SS
+      - 日本丨专线丨NTT丨SS
+      - 美国丨专线丨Linode丨SS
+      - AA-V2ray-HK-HGC
+      - AA-V2ray-HK-HKBN
+      - AA-V2ray-HK-HKBN.02
+      - AA-V2ray-HK-HKT.01
+      - AA-V2ray-HK-HKT.02
+      - AA-V2ray-HK-HKT.03
+      - AA-V2ray-HK-NTT.01
+      - AA-V2ray-HK-NTT.03
+      - AA-V2ray-JP-NTT.01
+      - AA-V2ray-JP-NTT.02
+      - AA-V2ray-JP-NTT.03
+      - AA-V2ray-RU-Selectel
+      - AA-V2ray-SG-Linode
+      - AA-V2ray-SG-NTT.01
+      - AA-V2ray-TW-HiNet.01
+      - AA-V2ray-TW-HiNet.02
+      - AA-V2ray-TW-HiNet.03
+      - AA-V2ray-TW-HiNet.04
+      - AA-V2ray-TW-HiNet.05
+      - AA-V2ray-US-Fremont
+      - AA-V2ray-US-HE.01
+      - AA-V2ray-US-HE.02
+      - AA-V2ray-US-HE.03
+      - AA-V2ray-US.HE.04
+      - ByWave # 嵌套使用订阅节点策略组
+      - XinJie
+
+  # 白名单模式 PROXY, 黑名单模式 DIRECT, 不知道别动
+  - name: "MATCH"
+    type: select
+    proxies:
+      - PROXY
+      - DIRECT
+
+  # 国际流媒体服务
+  - name: "Streaming"
+    type: select
+    proxies:
+      - PROXY
+      - 香港丨专线丨HKBN丨1x
+      - 香港丨专线丨HGC丨1x
+      - 香港丨专线丨NTT丨1x
+      - 新加坡丨专线丨NTT丨1x
+      - 台湾丨专线丨Hinet丨1x
+      - 美国丨专线丨Linode丨1x
+      - 日本丨专线丨NTT丨1x
+      - 香港丨专线丨HGC丨SS
+      - 香港丨专线丨NTT丨SS
+      - 香港丨专线丨HKBN丨SS
+      - 台湾丨专线丨HINET丨SS
+      - 新加坡丨专线丨NTT丨SS
+      - 日本丨专线丨NTT丨SS
+      - 美国丨专线丨Linode丨SS
+      - AA-V2ray-HK-HGC
+      - AA-V2ray-HK-HKBN
+      - AA-V2ray-HK-HKBN.02
+      - AA-V2ray-HK-HKT.01
+      - AA-V2ray-HK-HKT.02
+      - AA-V2ray-HK-HKT.03
+      - AA-V2ray-HK-NTT.01
+      - AA-V2ray-HK-NTT.03
+      - AA-V2ray-JP-NTT.01
+      - AA-V2ray-JP-NTT.02
+      - AA-V2ray-JP-NTT.03
+      - AA-V2ray-RU-Selectel
+      - AA-V2ray-SG-Linode
+      - AA-V2ray-SG-NTT.01
+      - AA-V2ray-TW-HiNet.01
+      - AA-V2ray-TW-HiNet.02
+      - AA-V2ray-TW-HiNet.03
+      - AA-V2ray-TW-HiNet.04
+      - AA-V2ray-TW-HiNet.05
+      - AA-V2ray-US-Fremont
+      - AA-V2ray-US-HE.01
+      - AA-V2ray-US-HE.02
+      - AA-V2ray-US-HE.03
+      - AA-V2ray-US.HE.04
+      # - US
+
+  # 中国流媒体服务（面向海外版本）
+  # 用于观看部分国内流媒体面向港澳台的地区的限定内容，此处应放港澳台节点，如果没有此需求可删除此处策略组及相关规则
+  - name: "StreamingSE"
+    type: select
+    proxies:
+      - DIRECT
+      - 香港丨专线丨HKBN丨1x
+      - 香港丨专线丨HGC丨1x
+      - 香港丨专线丨NTT丨1x
+      - 新加坡丨专线丨NTT丨1x
+      - 台湾丨专线丨Hinet丨1x
+      - 美国丨专线丨Linode丨1x
+      - 日本丨专线丨NTT丨1x
+      - 香港丨专线丨HGC丨SS
+      - 香港丨专线丨NTT丨SS
+      - 香港丨专线丨HKBN丨SS
+      - 台湾丨专线丨HINET丨SS
+      - 新加坡丨专线丨NTT丨SS
+      - 日本丨专线丨NTT丨SS
+      - 美国丨专线丨Linode丨SS
+      - AA-V2ray-HK-HGC
+      - AA-V2ray-HK-HKBN
+      - AA-V2ray-HK-HKBN.02
+      - AA-V2ray-HK-HKT.01
+      - AA-V2ray-HK-HKT.02
+      - AA-V2ray-HK-HKT.03
+      - AA-V2ray-HK-NTT.01
+      - AA-V2ray-HK-NTT.03
+      - AA-V2ray-JP-NTT.01
+      - AA-V2ray-JP-NTT.02
+      - AA-V2ray-JP-NTT.03
+      - AA-V2ray-RU-Selectel
+      - AA-V2ray-SG-Linode
+      - AA-V2ray-SG-NTT.01
+      - AA-V2ray-TW-HiNet.01
+      - AA-V2ray-TW-HiNet.02
+      - AA-V2ray-TW-HiNet.03
+      - AA-V2ray-TW-HiNet.04
+      - AA-V2ray-TW-HiNet.05
+      - AA-V2ray-US-Fremont
+      - AA-V2ray-US-HE.01
+      - AA-V2ray-US-HE.02
+      - AA-V2ray-US-HE.03
+      - AA-V2ray-US.HE.04
+
+# 关于 Rule Provider 请查阅：https://lancellc.gitbook.io/clash/clash-config-file/rule-provider
+
+rule-providers:
+# name: # Provider 名称
+#   type: http # http 或 file
+#   behavior: classical # 或 ipcidr、domain
+#   path: # 文件路径
+#   url: # 只有当类型为 HTTP 时才可用，您不需要在本地空间中创建新文件。
+#   interval: # 自动更新间隔，仅在类型为 HTTP 时可用
+
+  Unbreak:
+    type: http
+    behavior: classical
+    path: ./RuleSet/Unbreak.yaml
+    url: https://raw.githubusercontent.com/DivineEngine/Profiles/master/Clash/RuleSet/Unbreak.yaml
+    interval: 86400
+
+  Streaming:
+    type: http
+    behavior: classical
+    path: ./RuleSet/StreamingMedia/Streaming.yaml
+    url: https://raw.githubusercontent.com/DivineEngine/Profiles/master/Clash/RuleSet/StreamingMedia/Streaming.yaml
+    interval: 86400
+
+  StreamingSE:
+    type: http
+    behavior: classical
+    path: ./RuleSet/StreamingMedia/StreamingSE.yaml
+    url: https://raw.githubusercontent.com/DivineEngine/Profiles/master/Clash/RuleSet/StreamingMedia/StreamingSE.yaml
+    interval: 86400
+
+  Global:
+    type: http
+    behavior: classical
+    path: ./RuleSet/Global.yaml
+    url: https://raw.githubusercontent.com/DivineEngine/Profiles/master/Clash/RuleSet/Global.yaml
+    interval: 86400
+
+  China:
+    type: http
+    behavior: classical
+    path: ./RuleSet/China.yaml
+    url: https://raw.githubusercontent.com/DivineEngine/Profiles/master/Clash/RuleSet/China.yaml
+    interval: 86400
+
+  ChinaIP:
+    type: http
+    behavior: ipcidr
+    path: ./RuleSet/Extra/ChinaIP.yaml
+    url: https://raw.githubusercontent.com/DivineEngine/Profiles/master/Clash/RuleSet/Extra/ChinaIP.yaml
+    interval: 86400
+
+# 规则
+rules:
+  # Unbreak
+  - RULE-SET,Unbreak,DIRECT
+
+  # Global Area Network
+
+  # (Streaming Media)
+  - RULE-SET,Streaming,Streaming
+
+  # (StreamingSE)
+  - RULE-SET,StreamingSE,StreamingSE
+
+  # (DNS Cache Pollution) / (IP Blackhole) / (Region-Restricted Access Denied) / (Network Jitter)
+  - RULE-SET,Global,PROXY
+
+  # China Area Network
+  - RULE-SET,China,DIRECT
+
+  # Local Area Network
+  - IP-CIDR,192.168.0.0/16,DIRECT
+  - IP-CIDR,10.0.0.0/8,DIRECT
+  - IP-CIDR,172.16.0.0/12,DIRECT
+  - IP-CIDR,127.0.0.0/8,DIRECT
+  - IP-CIDR,100.64.0.0/10,DIRECT
+  - IP-CIDR,224.0.0.0/4,DIRECT
+  - IP-CIDR,fe80::/10,DIRECT
+
+  # （可选）使用来自 ipipdotnet 的 ChinaIP 以解决数据不准确的问题，使用 ChinaIP.yaml 时可禁用下列直至（包括）「GEOIP,CN」规则
+  # - RULE-SET,ChinaIP,DIRECT
+  # Tencent
+  - IP-CIDR,119.28.28.28/32,DIRECT
+  - IP-CIDR,182.254.116.0/24,DIRECT
+  # GeoIP China
+  - GEOIP,CN,DIRECT
+
+  - MATCH,MATCH
