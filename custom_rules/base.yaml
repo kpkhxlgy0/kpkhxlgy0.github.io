@@ -29,5 +29,5 @@ tun:
   dns-hijack:
     - any:53
 external-controller: '127.0.0.1:9090'
-# external-ui: dashboard
+external-ui: dashboard
 secret: ""
